@@ -30,7 +30,7 @@ APT_OPTIONS="-o debug::nolocking=true -o Dir::Etc::Trusted=$GPG_KEYRING_FILE -o 
 # Where the Agent is installed & configured
 DD_AGENT_ROOT="$APT_BUILD_DIR"
 DD_AGENT_CONF="$DD_AGENT_ROOT/opt/datadog-agent/agent/datadog.conf"
-DD_NGINX_CONF_DIR="$DD_AGENT_ROOT/opt/datadog-agent/agent/conf.d"
+DD_NGINX_CONF_DIR="$DD_AGENT_ROOT/opt/datadog-agent/agent"
 DD_NGINX_CONF="$DD_NGINX_CONF_DIR/nginx.yaml"
 DD_LOG_DIR="/tmp/logs/datadog"
 
@@ -41,7 +41,6 @@ mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
 mkdir -p "$DD_AGENT_ROOT"
 mkdir -p "$GPG_HOME_DIR"
-mkdir -p "$DD_NGINX_CONF_DIR"
 
 topic "Adding GPG key"
 # This mimics the behavior of apt-key add to create a non-standard keyring and
