@@ -30,6 +30,7 @@ APT_OPTIONS="-o debug::nolocking=true -o Dir::Etc::Trusted=$GPG_KEYRING_FILE -o 
 # Where the Agent is installed & configured
 DD_AGENT_ROOT="$APT_BUILD_DIR"
 DD_AGENT_CONF="$DD_AGENT_ROOT/opt/datadog-agent/agent/datadog.conf"
+DD_NGINX_CONF="$DD_AGENT_ROOT/opt/datadog-agent/agent/conf.d/nginx.yaml"
 DD_LOG_DIR="/tmp/logs/datadog"
 
 # Ensure directories exists
@@ -58,6 +59,8 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
 done
 
 mv $DD_AGENT_ROOT/etc/dd-agent/datadog.conf.example $DD_AGENT_CONF
+cp $DD_AGENT_ROOT/etc/dd-agent/conf.d/nginx.yaml.example $DD_NGINX_CONF
+cp $DD_AGENT_ROOT/etc/dd-agent/conf.d/nginx.yaml.example $DD_AGENT_ROOT/etc/dd-agent/conf.d/nginx.yaml
 
 # Turn off syslog
 sed -i -e"s/^.*log_to_syslog:.*$/log_to_syslog: no/" $DD_AGENT_CONF
